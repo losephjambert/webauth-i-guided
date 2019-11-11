@@ -13,9 +13,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const password = req.body.password;
-  bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(password, salt, function(err, hash) {
+  const credentials = req.body;
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(credentials.password, salt, (err, hash) => {
       // Store hash in your password DB.
       res.status(200).json({
         originalPassword: password,
